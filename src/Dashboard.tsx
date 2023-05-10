@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 import DrawerConfig from './components/DrawerConfig'
-import { WindCompass } from './components/WindCompass'
+
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import useStoreWeatherHistory from './store';
 import { ICurrentData } from './types';
-import { FaArrowAltCircleDown, FaArrowAltCircleUp, FaBeer } from 'react-icons/fa';
+import { FaBeer } from 'react-icons/fa';
 import WindCompassAmchart from './components/WindCompassAmchart';
-import { AnimatePresence, motion } from 'framer-motion';
+
 import CurrentTemp from './components/CurrentTemp';
 
 import imgBgr from './mapa_neco.png';
 
 export const Dashboard = () => {
 
-    const { firstName, updateFirstName, dataWeather, updateDataWeather, tempDirection, showConfig, updateShowConfig } = useStoreWeatherHistory((state) => state)
+    const { updateDataWeather, showConfig, updateShowConfig } = useStoreWeatherHistory((state) => state)
     // const [firstName, updateFirstName] = useStore(
     //     (state) => [state.firstName, state.updateFirstName]
     // )
@@ -52,9 +52,9 @@ export const Dashboard = () => {
     }, []);
 
     // Detener el refetchInterval
-    const stopRefetchInterval = () => {
-        clearInterval(refetchIntervalRef.current ?? undefined);
-    };
+    // const stopRefetchInterval = () => {
+    //     clearInterval(refetchIntervalRef.current ?? undefined);
+    // };
     //////////////////////////////////////////////////////////////////////////////////
 
 

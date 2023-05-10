@@ -1,11 +1,11 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import * as am5radar from "@amcharts/amcharts5/radar";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-import mapa_neco from './mapa_neco.png';
+
 import { ICurrentData } from '../../types';
 import useStoreWeatherHistory from '../../store';
 
@@ -91,7 +91,7 @@ const WindCompassAmchart = ({ forecastWeather, loadingForecastWeather }: WindCom
             minGridDistance: 10
         });
 
-        var secondXAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+        chart.xAxes.push(am5xy.ValueAxis.new(root, {
             maxDeviation: 0,
             min: 0,
             max: 360,
@@ -199,7 +199,7 @@ const WindCompassAmchart = ({ forecastWeather, loadingForecastWeather }: WindCom
             let i = 0;
             for (let history of dataWeather.slice(-cantHistoryLength).reverse()) {
                 console.log('history wind_kph', history.wind_kph);
-                createSeries(history, xAxis, root, i, cantHistoryLength, '#FF9C33')
+                createSeries(history, xAxis, root, i, cantHistoryLength)
                 i++;
             }
         }
@@ -219,7 +219,7 @@ const WindCompassAmchart = ({ forecastWeather, loadingForecastWeather }: WindCom
                     root,
                     i,
                     arr_Future_hours,
-                    '#00B300'
+
                 );
             }
         }
@@ -232,7 +232,7 @@ const WindCompassAmchart = ({ forecastWeather, loadingForecastWeather }: WindCom
     }, [loadingForecastWeather]);
 
 
-    const createSeries = (data: any, xAxis: any, root: any, i: number, total: number, color: string = '#cecece') => {
+    const createSeries = (data: any, xAxis: any, root: any, i: number, total: number) => {
 
         var dataItem = xAxis.makeDataItem({});
         var dataItemHand = am5radar.ClockHand.new(root, {
@@ -266,7 +266,7 @@ const WindCompassAmchart = ({ forecastWeather, loadingForecastWeather }: WindCom
         dataItem.set("value", data.wind_degree);
 
     }
-    const createSeriesFuture = (data: any, xAxis: any, root: any, i: number, total: number, color: string = '#cecece') => {
+    const createSeriesFuture = (data: any, xAxis: any, root: any, i: number, total: number) => {
 
         if (!data.wind_kph) {
             console.error(data)

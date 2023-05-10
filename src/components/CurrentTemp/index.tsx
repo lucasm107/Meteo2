@@ -10,20 +10,6 @@ interface Itemp {
     type: 'st' | 'c'
 }
 
-const items = [
-    {
-        id: 1,
-        content: "Message #01"
-    },
-    {
-        id: 2,
-        content: "Message #02"
-    },
-    {
-        id: 3,
-        content: "Message #03"
-    }
-];
 
 const CurrentTemp = ({ items }: CurrentTempProps) => {
     const [index, setIndex] = useState(0);

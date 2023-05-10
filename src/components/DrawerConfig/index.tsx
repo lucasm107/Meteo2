@@ -1,11 +1,7 @@
-import { useState } from "react";
-import { FaBeer } from "react-icons/fa";
 import useStoreWeatherHistory from "../../store";
 
 const DrawerConfig = () => {
-    const [open, setOpen] = useState(false);
-
-    const { showConfig, updateShowConfig } = useStoreWeatherHistory((state) => state)
+    const { showConfig } = useStoreWeatherHistory((state) => state)
 
     return (
         <>
