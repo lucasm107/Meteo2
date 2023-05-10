@@ -27,7 +27,7 @@ interface StoreState {
 
 const useStoreWeatherHistory = create<StoreState>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             firstName: 'xxxxx',
             lastName: '',
             showConfig: false,
