@@ -19,7 +19,7 @@ export const Dashboard = () => {
     //     (state) => [state.firstName, state.updateFirstName]
     // )
     const getCurrentWeather = async (): Promise<ICurrentData> => {
-        const response = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_APP_API}&q=Necochea&aqi=no&days=3`);
+        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_APP_API}&q=Necochea&aqi=no&days=3`);
         return response.data as ICurrentData;
     };
 
