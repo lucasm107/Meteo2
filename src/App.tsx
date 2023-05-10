@@ -13,7 +13,7 @@ function App() {
 
 
   return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <ErrorBoundary fallback={<div className='w-96 flex items-center justify-center'>Something went wrong</div>}>
       <QueryClientProvider client={queryClient}>
         <Dashboard />
       </QueryClientProvider>

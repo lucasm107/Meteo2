@@ -11,6 +11,7 @@ import WindCompassAmchart from './components/WindCompassAmchart';
 import CurrentTemp from './components/CurrentTemp';
 
 import imgBgr from './mapa_neco.png';
+import ForecastData from './components/ForecastData';
 
 export const Dashboard = () => {
 
@@ -97,19 +98,18 @@ export const Dashboard = () => {
                         <WindCompassAmchart forecastWeather={dataApi} loadingForecastWeather={isLoading} />
 
                     </div>
-                    <div className="w-1/2 bg-slate-800 text-center text-white h-full rounded  ">
-                        <div className="w-full h-20 flex items-center justify-center">
-                            {/* {tempDirection() === 'up' ? (
+                    <div className="w-1/2 bg-slate-800 text-center text-white h-full rounded  flex-col items-center justify-center">
+                        {/* <div className="w-full h-20 flex items-center justify-center"> */}
+                        {/* {tempDirection() === 'up' ? (
                                 <FaArrowAltCircleUp className="text-4xl" />
                             ) : (
                                 <FaArrowAltCircleDown className="text-4xl" />
                             )} */}
-                        </div>
+                        {/* </div> */}
 
                         {!isLoading ? (
                             <>
                                 <div className="text-center">
-
                                     <div className="w-full flex items-center justify-center">
                                         <img src={dataApi?.current?.condition.icon} />
                                     </div>
@@ -135,50 +135,70 @@ export const Dashboard = () => {
                         ) : (
                             <h1>Loading...</h1>
                         )}
-                        <div>Fase lunar</div>
+
 
                         <div className='mt-8'>
                             {currentTab === 'today' && (
-                                <div className='p-10'>
+                                <div className='p-4'>
                                     <h2><button className='font-bold bg-inherit' onClick={() => handleTabChange('today')}>Today</button> | <button className='bg-inherit font-light' onClick={() => handleTabChange('tomorrow')}>Tomorrow</button></h2>
-                                    {dataApi?.forecast.forecastday[0].hour
-                                        .filter(hour => new Date(hour.time) > currentDate) // Filter elements based on date comparison
-                                        .slice(0, 6)
-                                        .map(hour => {
-                                            const formattedTime = new Date(hour.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                                            return (
-                                                <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md"
-                                                    key={hour.time}>
-                                                    {/* <img src={hour.condition.icon} /> */}
-                                                    {/* {formattedTime} | {hour.temp_c}° | {hour.wind_dir} | {hour.wind_kph} */}
-                                                    <div className="flex items-center justify-center h-10">
-                                                        <div className="w-24 flex items-center justify-center">
-                                                            <img src={hour.condition.icon} alt={hour.condition.text} />
-                                                        </div>
-                                                        <div className="bg-slate-900 p-3 shadow-lg">
-                                                            {formattedTime}
-                                                        </div>
-                                                        <div className="bg-slate-800 p-3 w-16  shadow-lg">
-                                                            {hour.temp_c}°
-                                                        </div>
-                                                        <div className="bg-slate-700 p-3 w-16 shadow-lg">
-                                                            {hour.wind_dir}
-                                                        </div>
-                                                        <div className="bg-slate-600 p-3 w-24 shadow-lg">
-                                                            {hour.wind_kph} <span className="text-xs">km/h</span>
+                                    <div className=''>
+                                        {dataApi?.forecast.forecastday[0].hour && (
+                                            <ForecastData items={
+                                                dataApi?.forecast.forecastday[0].hour
+                                                    .filter(hour => new Date(hour.time) > currentDate) // Filter elements based on date comparison
+                                                    .slice(0, 12)} />
+
+                                        )}
+
+                                        {/* {dataApi?.forecast.forecastday[0].hour
+                                            .filter(hour => new Date(hour.time) > currentDate) // Filter elements based on date comparison
+                                            .slice(0, 6)
+                                            .map(hour => {
+                                                const formattedTime = new Date(hour.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                                return (
+                                                    <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md"
+                                                        key={hour.time}>
+                                                        
+                                                        <div className="flex items-center justify-center h-10">
+                                                            <div className="w-24 flex items-center justify-center">
+                                                                <img src={hour.condition.icon} alt={hour.condition.text} />
+                                                            </div>
+                                                            <div className="bg-slate-900 p-3 shadow-lg">
+                                                                {formattedTime}
+                                                            </div>
+                                                            <div className="bg-slate-800 p-3 w-16  shadow-lg">
+                                                                {hour.temp_c}°
+                                                            </div>
+                                                            <div className="bg-slate-700 p-3 w-16 shadow-lg">
+                                                                {hour.wind_dir}
+                                                            </div>
+                                                            <div className="bg-slate-600 p-3 w-24 shadow-lg">
+                                                                {hour.wind_kph} <span className="text-xs">km/h</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )
-                                        }
-                                        )}
+                                                )
+                                            }
+                                            )} */}
+                                    </div>
                                 </div>
                             )}
 
                             {currentTab === 'tomorrow' && (
-                                <div className='p-10'>
+                                <div className='p-4'>
                                     <h2><button className='font-light bg-inherit' onClick={() => handleTabChange('today')}>Today</button> | <button className='bg-inherit font-bold' onClick={() => handleTabChange('tomorrow')}>Tomorrow</button></h2>
-                                    {dataApi?.forecast.forecastday[1]?.hour
+                                    <div className=''>
+                                        {dataApi?.forecast.forecastday[1].hour && (
+                                            <ForecastData items={
+                                                dataApi?.forecast.forecastday[1]?.hour
+                                                    .filter(hour => new Date(hour.time) > currentDate) // mayores a la hs actual
+                                                    .filter((_, index) => index % 2 === 0) // Filtrar solo las horas pares
+                                                    .slice(0, 12)} />
+
+                                        )}
+                                    </div>
+
+                                    {/* {dataApi?.forecast.forecastday[1]?.hour
                                         .filter(hour => new Date(hour.time) > currentDate) // mayores a la hs actual
                                         .filter((_, index) => index % 2 === 0) // Filtrar solo las horas pares
                                         .slice(0, 6)
@@ -187,8 +207,6 @@ export const Dashboard = () => {
                                             return (
                                                 <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md"
                                                     key={hour.time}>
-                                                    {/* <img src={hour.condition.icon} /> */}
-                                                    {/* {formattedTime} | {hour.temp_c}° | {hour.wind_dir} | {hour.wind_kph} */}
                                                     <div className="flex items-center justify-center h-10">
                                                         <div className="w-24 flex items-center justify-center">
                                                             <img src={hour.condition.icon} alt={hour.condition.text} />
@@ -210,7 +228,7 @@ export const Dashboard = () => {
                                                 </div>
                                             )
                                         }
-                                        )}
+                                        )} */}
                                 </div>
                             )}
                         </div>

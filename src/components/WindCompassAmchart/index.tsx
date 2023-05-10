@@ -154,22 +154,28 @@ const WindCompassAmchart = ({ forecastWeather, loadingForecastWeather }: WindCom
             fontSize: "4em",
             centerX: am5.p50,
             centerY: 75,
-            fill: am5.color("#FF0000"),
+            fill: am5.color("#FFFFFF"),
 
         }));
         var labelSpeed = chart.radarContainer.children.push(am5.Label.new(root, {
-            fontSize: "1.5em",
+            fontSize: "1.7em",
             centerX: am5.p50,
             centerY: -10,
+            fill: am5.color("#FFFFFF"),
             background: am5.Rectangle.new(root, {
                 fill: am5.color('#333333'),
-                fillOpacity: 0.5
+                fillOpacity: 0.7
             })
         }));
         var labelWindGust = chart.radarContainer.children.push(am5.Label.new(root, {
-            fontSize: "0.75em",
+            fontSize: "0.9em",
             centerX: am5.p50,
-            centerY: -40
+            centerY: -60,
+            fill: am5.color("#FFFFFF"),
+            background: am5.Rectangle.new(root, {
+                fill: am5.color('#333333'),
+                fillOpacity: 0.7
+            })
         }));
 
 
