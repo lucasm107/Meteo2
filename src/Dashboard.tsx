@@ -111,7 +111,7 @@ export const Dashboard = () => {
                             <>
                                 <div className="text-center">
                                     <div className="w-full flex items-center justify-center">
-                                        <img src={dataApi?.current?.condition.icon} />
+                                        <img src={dataApi?.current?.condition?.icon} />
                                     </div>
                                     <p>{dataApi?.location?.name}</p>
                                 </div>
