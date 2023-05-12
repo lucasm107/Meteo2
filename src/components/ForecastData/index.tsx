@@ -34,26 +34,29 @@ const ForecastData = ({ items }: ForecastDataProps) => {
                     transition={{ ease: "easeInOut" }}
                     style={{ position: "absolute", width: '100%' }}
                 >
-                    <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md "
-                        key={items[index].time}>
-                        <div className="flex items-center justify-center h-10">
-                            <div className="w-24 flex items-center justify-center">
-                                <img src={items[index]?.condition?.icon} alt={items[index]?.condition?.text} />
-                            </div>
-                            <div className="bg-slate-900 p-3 shadow-lg">
-                                {new Date(items[index].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                            </div>
-                            <div className="bg-slate-800 p-3 w-16  shadow-lg">
-                                {items[index].temp_c}°
-                            </div>
-                            <div className="bg-slate-700 p-3 w-16 shadow-lg">
-                                {items[index].wind_dir}
-                            </div>
-                            <div className="bg-slate-600 p-3 w-24 shadow-lg">
-                                {items[index].wind_kph} <span className="text-xs">km/h</span>
+                    {items[index]?.time && (
+                        <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md "
+                            key={items[index].time}>
+                            <div className="flex items-center justify-center h-10">
+                                <div className="w-24 flex items-center justify-center">
+                                    <img src={items[index]?.condition?.icon} alt={items[index]?.condition?.text} />
+                                </div>
+                                <div className="bg-slate-900 p-3 shadow-lg">
+                                    {new Date(items[index].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </div>
+                                <div className="bg-slate-800 p-3 w-16  shadow-lg">
+                                    {items[index].temp_c}°
+                                </div>
+                                <div className="bg-slate-700 p-3 w-16 shadow-lg">
+                                    {items[index].wind_dir}
+                                </div>
+                                <div className="bg-slate-600 p-3 w-24 shadow-lg">
+                                    {items[index].wind_kph} <span className="text-xs">km/h</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
+
                     {(index + 1) <= (items.length - 1) && items[index + 1]?.condition?.icon && (
                         <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md "
                             key={items[index + 1].time}>
