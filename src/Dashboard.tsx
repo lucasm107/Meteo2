@@ -91,14 +91,15 @@ export const Dashboard = () => {
             </div>
 
             <div className="flex-grow bg-gradient-to-r from-indigo-900 opacity-80">
-                <div className="flex justify-center items-center p-10 bg-slate-900 h-full gap-5">
-                    <div className="w-1/2   text-center rounded h-full bg-no-repeat bg-center" style={{ backgroundImage: `url(${imgBgr})` }}>
+                <div className="flex flex-col sm:flex-row justify-center items-center p-3 sm:p-10 bg-slate-900 h-full gap-5">
+                    <div className="w-full sm:w-1/2 flex-grow  sm:h-full text-center rounded  bg-no-repeat bg-center" style={{ backgroundImage: `url(${imgBgr})` }}>
                         {/* <WindCompass /> */}
 
                         <WindCompassAmchart forecastWeather={dataApi} loadingForecastWeather={isLoading} />
 
                     </div>
-                    <div className="w-1/2 bg-slate-800 text-center text-white h-full rounded  flex-col items-center justify-center">
+                    <div className="w-full sm:w-1/2 h-96 sm:h-full bg-slate-800 text-center text-white  rounded flex flex-col items-center justify-center overflow-hidden">
+
                         {/* <div className="w-full h-20 flex items-center justify-center"> */}
                         {/* {tempDirection() === 'up' ? (
                                 <FaArrowAltCircleUp className="text-4xl" />
@@ -137,7 +138,7 @@ export const Dashboard = () => {
                         )}
 
 
-                        <div className='mt-8'>
+                        <div className='mt-8 w-full'>
                             {currentTab === 'today' && (
                                 <div className='p-4'>
                                     <h2><button className='font-bold bg-inherit' onClick={() => handleTabChange('today')}>Today</button> | <button className='bg-inherit font-light' onClick={() => handleTabChange('tomorrow')}>Tomorrow</button></h2>
@@ -149,37 +150,6 @@ export const Dashboard = () => {
                                                     .slice(0, 12)} />
 
                                         )}
-
-                                        {/* {dataApi?.forecast.forecastday[0].hour
-                                            .filter(hour => new Date(hour.time) > currentDate) // Filter elements based on date comparison
-                                            .slice(0, 6)
-                                            .map(hour => {
-                                                const formattedTime = new Date(hour.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                                                return (
-                                                    <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md"
-                                                        key={hour.time}>
-                                                        
-                                                        <div className="flex items-center justify-center h-10">
-                                                            <div className="w-24 flex items-center justify-center">
-                                                                <img src={hour.condition.icon} alt={hour.condition.text} />
-                                                            </div>
-                                                            <div className="bg-slate-900 p-3 shadow-lg">
-                                                                {formattedTime}
-                                                            </div>
-                                                            <div className="bg-slate-800 p-3 w-16  shadow-lg">
-                                                                {hour.temp_c}°
-                                                            </div>
-                                                            <div className="bg-slate-700 p-3 w-16 shadow-lg">
-                                                                {hour.wind_dir}
-                                                            </div>
-                                                            <div className="bg-slate-600 p-3 w-24 shadow-lg">
-                                                                {hour.wind_kph} <span className="text-xs">km/h</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            }
-                                            )} */}
                                     </div>
                                 </div>
                             )}
@@ -197,38 +167,6 @@ export const Dashboard = () => {
 
                                         )}
                                     </div>
-
-                                    {/* {dataApi?.forecast.forecastday[1]?.hour
-                                        .filter(hour => new Date(hour.time) > currentDate) // mayores a la hs actual
-                                        .filter((_, index) => index % 2 === 0) // Filtrar solo las horas pares
-                                        .slice(0, 6)
-                                        .map(hour => {
-                                            const formattedTime = new Date(hour.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                                            return (
-                                                <div className="flex bg-slate-700 text-white items-center justify-center m-4 rounded-md"
-                                                    key={hour.time}>
-                                                    <div className="flex items-center justify-center h-10">
-                                                        <div className="w-24 flex items-center justify-center">
-                                                            <img src={hour.condition.icon} alt={hour.condition.text} />
-                                                        </div>
-                                                        <div className="bg-slate-900 p-3  shadow-lg">
-                                                            {formattedTime}
-                                                        </div>
-                                                        <div className="bg-slate-800 p-3 w-16  shadow-lg">
-                                                            {hour.temp_c}°
-                                                        </div>
-                                                        <div className="bg-slate-700 p-3 w-16 shadow-lg">
-                                                            {hour.wind_dir}
-                                                        </div>
-                                                        <div className="bg-slate-600 p-3 w-24 shadow-lg">
-                                                            {hour.wind_kph} <span className="text-xs">km/h</span>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            )
-                                        }
-                                        )} */}
                                 </div>
                             )}
                         </div>
@@ -239,16 +177,11 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-
             <DrawerConfig />
-
-
-
 
             <div className=" bg-slate-700 text-center text-white text-xs p-1 font-extralight">
                 {dataApi?.current.last_updated}
             </div>
-
 
         </div>
     )

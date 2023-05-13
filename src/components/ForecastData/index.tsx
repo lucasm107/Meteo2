@@ -23,7 +23,7 @@ const ForecastData = ({ items }: ForecastDataProps) => {
 
 
     return (
-        <div style={{ position: "relative", overflow: "hidden" }} className='w-full h-48  '>
+        <div style={{ position: "relative", overflow: "hidden" }} className='w-full h-40 sm:h-48  '>
             <AnimatePresence>
                 <motion.div
                     // key={items[index].id}

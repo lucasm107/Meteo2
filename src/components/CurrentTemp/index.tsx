@@ -25,17 +25,17 @@ const CurrentTemp = ({ items }: CurrentTempProps) => {
     }, []);
 
     return (
-        <div style={{ position: "relative", overflow: "hidden" }} className='w-full h-14  bg-gradient-to-r from-transparent to-slate-700'>
+        <div style={{ position: "relative" }} className='w-full pb-5 h-40 '>
             <AnimatePresence>
                 <motion.div
                     key={items[index].id}
                     initial={{ x: 60, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -30, opacity: 0 }}
-                    transition={{ ease: "easeInOut" }}
+                    transition={{ ease: "circIn", duration: 0.5 }}
                     style={{ position: "absolute", width: '100%' }}
                 >
-                    <h1 >
+                    <h1 className='bg-gradient-to-r from-transparent to-slate-700 sm:text-8xl ' >
                         {items[index].value}°<span className="text-lg">{items[index].type}</span>
                     </h1>
                 </motion.div>
